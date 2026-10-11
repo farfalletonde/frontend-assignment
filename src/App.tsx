@@ -1,4 +1,4 @@
-export function App() {
+export const App = () => {
   return (
     <>
       <header>
@@ -8,4 +8,4 @@ export function App() {
       <main></main>
     </>
   );
-}
+};
