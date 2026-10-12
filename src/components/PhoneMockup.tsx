@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 import type { Entrance, PhoneLayer } from '../content/phoneLayers';
 
@@ -28,12 +28,12 @@ export const PhoneMockup = ({ layers }: PhoneMockupProps) => {
   const [phone, ...overlays] = layers;
 
   return (
-    <motion.div
+    <m.div
       exit={{ opacity: 0 }}
       transition={{ duration: 0.27 }}
       className="relative mt-5 aspect-phone min-h-24 w-full max-w-column overflow-hidden lg:mt-32"
     >
-      <motion.img
+      <m.img
         src={phone.src}
         alt=""
         initial={{ y: '100%' }}
@@ -46,7 +46,7 @@ export const PhoneMockup = ({ layers }: PhoneMockupProps) => {
         const delay = overlayDelay + (layer.delay ?? 0);
 
         return (
-          <motion.img
+          <m.img
             key={index}
             src={layer.src}
             alt=""
@@ -65,6 +65,6 @@ export const PhoneMockup = ({ layers }: PhoneMockupProps) => {
           />
         );
       })}
-    </motion.div>
+    </m.div>
   );
 };

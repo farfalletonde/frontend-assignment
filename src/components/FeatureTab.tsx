@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import type { ComponentProps, ComponentType, MouseEvent } from 'react';
 
 import type { Feature, FeatureId } from '../content/texts';
@@ -55,12 +55,12 @@ export const FeatureTab = ({
 
         <AnimatePresence initial={false}>
           {isActive && (
-            <motion.svg
+            <m.svg
               key="ring"
               viewBox="0 0 56 56"
               className="absolute -inset-px size-14 -scale-y-100 -rotate-90 text-brand"
             >
-              <motion.circle
+              <m.circle
                 cx="28"
                 cy="28"
                 r="27.5"
@@ -71,7 +71,7 @@ export const FeatureTab = ({
                 exit={{ pathLength: 0 }}
                 transition={{ duration: 0.5 }}
               />
-            </motion.svg>
+            </m.svg>
           )}
         </AnimatePresence>
       </span>

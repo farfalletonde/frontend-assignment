@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 import { texts, type Feature } from '../content/texts';
 
@@ -8,7 +8,7 @@ type FeatureTextProps = {
 };
 
 export const FeatureText = ({ feature, isActive }: FeatureTextProps) => (
-  <motion.div
+  <m.div
     aria-hidden={!isActive}
     initial={false}
     animate={{ opacity: isActive ? 1 : 0 }}
@@ -35,5 +35,5 @@ export const FeatureText = ({ feature, isActive }: FeatureTextProps) => (
     >
       {texts.cta}
     </button>
-  </motion.div>
+  </m.div>
 );
