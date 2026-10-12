@@ -1,11 +1,7 @@
-export const App = () => {
-  return (
-    <>
-      <header>
-        <h1>HubX Frontend Assignment</h1>
-      </header>
+import { FeatureSlider } from './components/FeatureSlider';
 
-      <main></main>
-    </>
-  );
-};
+export const App = () => (
+  <main className="min-h-svh bg-white tracking-tight lg:flex lg:flex-col lg:justify-center lg:bg-page">
+    <FeatureSlider />
+  </main>
+);

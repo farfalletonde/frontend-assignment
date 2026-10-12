@@ -7,13 +7,27 @@
   --color-icon: #666;
   --color-page: #f5f5f7;
   --color-surface: #fbfcfc;
-  --text-eyebrow: 16px;
-  --text-eyebrow--letter-spacing: 2px;
+  --container-page: 1440px;
+  --container-column: 556px;
+  --aspect-phone: 554 / 483;
   --text-title: 32px;
   --text-title--line-height: 40px;
   --text-body: 20px;
   --text-body--line-height: 32px;
-  --text-body--letter-spacing: 0.8px;
   --text-body-sm: 14px;
   --text-body-sm--line-height: 28px;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 }
