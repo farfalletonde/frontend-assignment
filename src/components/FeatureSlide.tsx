@@ -1,3 +1,5 @@
+import { AnimatePresence } from 'framer-motion';
+
 import { phoneLayers } from '../content/phoneLayers';
 import { texts, type FeatureId } from '../content/texts';
 import { FeatureText } from './FeatureText';
@@ -23,6 +25,8 @@ export const FeatureSlide = ({ activeId }: FeatureSlideProps) => (
       ))}
     </div>
 
-    <PhoneMockup layers={phoneLayers[activeId]} />
+    <AnimatePresence mode="wait" initial={false}>
+      <PhoneMockup key={activeId} layers={phoneLayers[activeId]} />
+    </AnimatePresence>
   </div>
 );

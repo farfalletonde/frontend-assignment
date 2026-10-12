@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import { texts, type Feature } from '../content/texts';
 
 type FeatureTextProps = {
@@ -6,10 +8,13 @@ type FeatureTextProps = {
 };
 
 export const FeatureText = ({ feature, isActive }: FeatureTextProps) => (
-  <div
+  <motion.div
     aria-hidden={!isActive}
+    initial={false}
+    animate={{ opacity: isActive ? 1 : 0 }}
+    transition={isActive ? { duration: 0.2, delay: 0.3 } : { duration: 0.27 }}
     className={`col-start-1 row-start-1 flex flex-col items-center text-center lg:items-end lg:text-right ${
-      isActive ? '' : 'invisible'
+      isActive ? '' : 'pointer-events-none'
     }`}
   >
     <p className="text-base leading-tight font-extrabold tracking-widest text-brand uppercase">
@@ -24,11 +29,11 @@ export const FeatureText = ({ feature, isActive }: FeatureTextProps) => (
 
     <button
       type="button"
-      className="mt-5 rounded-xs border border-black/8 px-4 py-2 
-      text-sm/6 text-heading transition-colors hover:bg-black/4
+      className="mt-5 rounded-xs border border-black/8 px-4 py-2
+      text-sm/6 text-heading outline-none transition-colors hover:bg-black/4
       lg:px-5 lg:py-3 lg:text-xl"
     >
       {texts.cta}
     </button>
-  </div>
+  </motion.div>
 );

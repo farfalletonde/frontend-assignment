@@ -15,7 +15,7 @@ export const FeatureTabs = ({ activeId, onSelect }: FeatureTabsProps) => {
 
   const selectCenteredTab = (strip: HTMLElement) => {
     const center = strip.scrollLeft + strip.clientWidth / 2;
-    const tabs = [...strip.children] as HTMLElement[];
+    const tabs = [...strip.querySelectorAll('button')];
     const distances = tabs.map((tab) =>
       Math.abs(tab.offsetLeft + tab.offsetWidth / 2 - center),
     );
@@ -40,7 +40,7 @@ export const FeatureTabs = ({ activeId, onSelect }: FeatureTabsProps) => {
     const step = arrowSteps[event.key];
     if (!step) return;
 
-    const tabs = [...event.currentTarget.children] as HTMLButtonElement[];
+    const tabs = [...event.currentTarget.querySelectorAll('button')];
     const current = texts.features.findIndex(({ id }) => id === activeId);
     const next = tabs[(current + step + tabs.length) % tabs.length];
 
@@ -54,16 +54,18 @@ export const FeatureTabs = ({ activeId, onSelect }: FeatureTabsProps) => {
       <div
         onScroll={handleScroll}
         onKeyDown={handleKeyDown}
-        className="relative mx-auto flex max-w-page snap-x snap-mandatory overflow-x-auto scrollbar-none lg:snap-none"
+        className="relative mx-auto max-w-page snap-x snap-mandatory overflow-x-auto scrollbar-none lg:snap-none"
       >
-        {texts.features.map((feature) => (
-          <FeatureTab
-            key={feature.id}
-            feature={feature}
-            isActive={feature.id === activeId}
-            onSelect={onSelect}
-          />
-        ))}
+        <div className="flex lg:grid lg:w-max lg:min-w-full lg:auto-cols-fr lg:grid-flow-col">
+          {texts.features.map((feature) => (
+            <FeatureTab
+              key={feature.id}
+              feature={feature}
+              isActive={feature.id === activeId}
+              onSelect={onSelect}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
