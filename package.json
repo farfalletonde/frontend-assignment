@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "vitest run",
     "format": "npm run format:prettier && npm run format:stylelint",
     "format:prettier": "prettier --write --list-different .",
     "format:stylelint": "npm run lint:stylelint -- --fix",
@@ -22,6 +23,8 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/react": "^14.3.1",
+    "@testing-library/user-event": "^14.6.7",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
@@ -33,6 +36,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^22.1.0",
     "postcss": "^8.5.29",
     "prettier": "^3.2.4",
     "stylelint": "^15.10.2",
@@ -40,6 +44,7 @@
     "stylelint-config-standard": "^34.0.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.1.6",
-    "vite": "^4.4.7"
+    "vite": "^4.4.7",
+    "vitest": "^0.34.6"
   }
 }
