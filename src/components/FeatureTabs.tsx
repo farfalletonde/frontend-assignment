@@ -1,4 +1,4 @@
-import { useRef, type KeyboardEvent, type UIEvent } from 'react';
+import { useEffect, useRef, type UIEvent } from 'react';
 
 import { texts, type FeatureId } from '../content/texts';
 import { FeatureTab } from './FeatureTab';
@@ -11,7 +11,26 @@ type FeatureTabsProps = {
 };
 
 export const FeatureTabs = ({ activeId, onSelect }: FeatureTabsProps) => {
+  const stripRef = useRef<HTMLDivElement>(null);
   const scrollEndTimer = useRef<number>();
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const step = arrowSteps[event.key];
+      if (!step || !stripRef.current) return;
+
+      const tabs = [...stripRef.current.querySelectorAll('button')];
+      const current = texts.features.findIndex(({ id }) => id === activeId);
+      const next = tabs[(current + step + tabs.length) % tabs.length];
+
+      event.preventDefault();
+      next.focus();
+      next.click();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeId]);
 
   const selectCenteredTab = (strip: HTMLElement) => {
     const center = strip.scrollLeft + strip.clientWidth / 2;
@@ -36,24 +55,11 @@ export const FeatureTabs = ({ activeId, onSelect }: FeatureTabsProps) => {
     );
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    const step = arrowSteps[event.key];
-    if (!step) return;
-
-    const tabs = [...event.currentTarget.querySelectorAll('button')];
-    const current = texts.features.findIndex(({ id }) => id === activeId);
-    const next = tabs[(current + step + tabs.length) % tabs.length];
-
-    event.preventDefault();
-    next.focus();
-    next.click();
-  };
-
   return (
     <div className="bg-white">
       <div
+        ref={stripRef}
         onScroll={handleScroll}
-        onKeyDown={handleKeyDown}
         className="relative mx-auto max-w-page snap-x snap-mandatory overflow-x-auto scrollbar-none lg:snap-none"
       >
         <div className="flex lg:grid lg:w-max lg:min-w-full lg:auto-cols-fr lg:grid-flow-col">

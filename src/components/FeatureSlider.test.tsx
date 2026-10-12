@@ -41,7 +41,6 @@ describe('FeatureSlider', () => {
 
   it('moves between tabs with the arrow keys and wraps around', async () => {
     render(<FeatureSlider />);
-    screen.getByRole('button', { name: 'Document Scanner' }).focus();
 
     await userEvent.keyboard('{ArrowRight}');
     expect(visibleTitle()).toBe('One-Tap Focus');
