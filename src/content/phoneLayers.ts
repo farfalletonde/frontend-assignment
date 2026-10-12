@@ -19,41 +19,51 @@ export type Entrance = 'pop' | 'rise' | 'slideLeft' | 'slideRight';
 export type PhoneLayer = {
   src: string;
   entrance?: Entrance;
+  delay?: number;
+  scales?: number[];
   className?: string;
 };
 
 const backPage: PhoneLayer = {
   src: page,
   entrance: 'rise',
-  className: 'origin-top scale-85 -translate-y-1',
+  scales: [1, 0.94, 0.85],
+  className: 'origin-top -translate-y-1',
 };
 
 const middlePage: PhoneLayer = {
   src: page,
   entrance: 'rise',
-  className: 'origin-top scale-94 -translate-y-2',
+  delay: 0.33,
+  scales: [1, 0.94],
+  className: 'origin-top -translate-y-2',
 };
 
-const frontPage: PhoneLayer = { src: page, entrance: 'rise' };
+const frontPage: PhoneLayer = { src: page, entrance: 'rise', delay: 0.66 };
 
 export const phoneLayers: Record<FeatureId, PhoneLayer[]> = {
   documentScanner: [{ src: scannerPhone }],
   signAndStamp: [
     { src: signPhone },
     { src: signatureCard, entrance: 'pop', className: 'origin-[20%_66%]' },
-    { src: stampCard, entrance: 'pop', className: 'origin-[80%_48%]' },
+    {
+      src: stampCard,
+      entrance: 'pop',
+      delay: 0.15,
+      className: 'origin-[80%_48%]',
+    },
   ],
   batchScanning: [{ src: batchPhone }, backPage, middlePage, frontPage],
   advancedFilters: [
     { src: filtersPhone },
     { src: barLeft, entrance: 'slideLeft' },
-    { src: barRight, entrance: 'slideRight' },
+    { src: barRight, entrance: 'slideRight', delay: 0.15 },
   ],
   exportAndShare: [
     { src: exportPhone },
     { src: arrow, entrance: 'rise' },
-    { src: pdf, entrance: 'rise' },
-    { src: jpg, entrance: 'rise' },
-    { src: txt, entrance: 'rise' },
+    { src: pdf, entrance: 'rise', delay: 0.07 },
+    { src: jpg, entrance: 'rise', delay: 0.3 },
+    { src: txt, entrance: 'rise', delay: 0.53 },
   ],
 };

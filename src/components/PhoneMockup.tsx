@@ -5,6 +5,9 @@ import type { Entrance, PhoneLayer } from '../content/phoneLayers';
 const layerClassName =
   'absolute inset-0 size-full object-contain object-bottom';
 
+const overlayDelay = 1;
+const stackStep = 0.33;
+
 const cssEase: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
 const entranceStart: Record<
@@ -39,21 +42,29 @@ export const PhoneMockup = ({ layers }: PhoneMockupProps) => {
         className={layerClassName}
       />
 
-      {overlays.map((layer, index) => (
-        <motion.img
-          key={index}
-          src={layer.src}
-          alt=""
-          initial={{ opacity: 0, ...entranceStart[layer.entrance ?? 'rise'] }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{
-            duration: 0.3,
-            delay: 1 + index * 0.15,
-            ease: 'easeOut',
-          }}
-          className={`${layerClassName} ${layer.className ?? ''}`}
-        />
-      ))}
+      {overlays.map((layer, index) => {
+        const delay = overlayDelay + (layer.delay ?? 0);
+
+        return (
+          <motion.img
+            key={index}
+            src={layer.src}
+            alt=""
+            initial={{ opacity: 0, ...entranceStart[layer.entrance ?? 'rise'] }}
+            animate={{ opacity: 1, scale: layer.scales ?? 1, x: 0, y: 0 }}
+            transition={{
+              duration: 0.3,
+              delay,
+              ease: 'easeOut',
+              scale: layer.scales && {
+                duration: (layer.scales.length - 1) * stackStep,
+                delay: delay + stackStep,
+              },
+            }}
+            className={`${layerClassName} ${layer.className ?? ''}`}
+          />
+        );
+      })}
     </motion.div>
   );
 };
