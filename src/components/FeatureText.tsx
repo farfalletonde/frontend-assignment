@@ -12,7 +12,7 @@ export const FeatureText = ({ feature, isActive }: FeatureTextProps) => (
     aria-hidden={!isActive}
     initial={false}
     animate={{ opacity: isActive ? 1 : 0 }}
-    transition={isActive ? { duration: 0.2, delay: 0.3 } : { duration: 0.27 }}
+    transition={isActive ? { duration: 0.2, delay: 0.2 } : { duration: 0.2 }}
     className={`col-start-1 row-start-1 flex flex-col items-center text-center lg:items-end lg:text-right ${
       isActive ? '' : 'pointer-events-none'
     }`}

@@ -25,7 +25,7 @@ export const FeatureSlide = ({ activeId }: FeatureSlideProps) => (
       ))}
     </div>
 
-    <AnimatePresence mode="wait" initial={false}>
+    <AnimatePresence mode="wait">
       <PhoneMockup key={activeId} layers={phoneLayers[activeId]} />
     </AnimatePresence>
   </div>

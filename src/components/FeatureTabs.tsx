@@ -32,7 +32,7 @@ export const FeatureTabs = ({ activeId, onSelect }: FeatureTabsProps) => {
     window.clearTimeout(scrollEndTimer.current);
     scrollEndTimer.current = window.setTimeout(
       () => selectCenteredTab(strip),
-      150,
+      100,
     );
   };
 

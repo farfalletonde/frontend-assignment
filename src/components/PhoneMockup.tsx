@@ -5,7 +5,7 @@ import type { Entrance, PhoneLayer } from '../content/phoneLayers';
 const layerClassName =
   'absolute inset-0 size-full object-contain object-bottom';
 
-const overlayDelay = 1;
+const overlayDelay = 0.7;
 const stackStep = 0.33;
 
 const cssEase: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
@@ -30,7 +30,7 @@ export const PhoneMockup = ({ layers }: PhoneMockupProps) => {
   return (
     <m.div
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.27 }}
+      transition={{ duration: 0.2 }}
       className="relative mt-5 aspect-phone min-h-24 w-full max-w-column overflow-hidden lg:mt-32"
     >
       <m.img
@@ -38,7 +38,7 @@ export const PhoneMockup = ({ layers }: PhoneMockupProps) => {
         alt=""
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.9, delay: 0.2, ease: cssEase }}
+        transition={{ duration: 0.7, ease: cssEase }}
         className={layerClassName}
       />
 
