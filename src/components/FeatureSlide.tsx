@@ -11,7 +11,7 @@ type FeatureSlideProps = {
 
 export const FeatureSlide = ({ activeId }: FeatureSlideProps) => (
   <div
-    className="mx-auto flex min-h-0 w-full max-w-page
+    className="mx-auto flex min-h-0 w-full max-w-page overflow-y-auto scrollbar-none
   flex-col items-center px-2 pt-14 lg:h-153 lg:flex-row-reverse
   lg:justify-between lg:gap-12 lg:pt-0 lg:pr-32 lg:pl-25"
   >
